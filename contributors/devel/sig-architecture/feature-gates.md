@@ -107,7 +107,7 @@ While some exceptions may happen, approvers should use the following guidance:
 
 ### Compatibility versions
 
-The Kubernetes "compatibility version" features promises that control-plane
+The Kubernetes "compatibility version" feature promises that control-plane
 components can be configured to behave as if they were any of the 3 previous
 releases, which includes feature gates and gate-controlled APIs and logic.
 
@@ -179,19 +179,15 @@ other action outside of Kubernetes to use it. This gives some grace period for
 users to take action, but such feature gates will eventually set
 `LockToDefault` to `true` and then be retired, like normal.
 
-[After at least three releases where a feature has been locked to the default value, feature gates should be removedpost-GA/deprecation and locked to
-default](https://kubernetes.io/docs/reference/using-api/deprecation-policy/#deprecation),
-feature gates should be removed. We use three releases because it corresponds to
-roughly one year in the Kubernetes development cycle which is our
-[support period](https://kubernetes.io/releases/patch-releases/#support-period).
-
-To achieve our [compatibility version](#compatibility-versions) promise, all
-references to the feature gate must be kept for a minimum of three releases
-after the gate has been locked to the default value. The gate, all references to
-it, and all gated logic may be removed after those three releases. For example,
-if a gate was `LockToDefault: true` in kubernetes version `X`, it may be removed
-in version `X+3` (which must be compatible with `X+2`, `X+1`, and `X`, all of
-which were also locked).
+To achieve our [compatibility version](#compatibility-versions) promise, after
+three releases where a feature has been locked to the default value (whether
+that feature is GA or deprecated), feature gates and references should be
+removed. We use three releases because it corresponds to roughly one year in the
+Kubernetes development cycle which is our [support
+period](https://kubernetes.io/releases/patch-releases/#support-period). For
+example, if a gate was `LockToDefault: true` in kubernetes version `X`, it may
+be removed in version `X+3` (which must be compatible with `X+2`, `X+1`, and
+`X`, all of which were also locked).
 
 Typically, we add a comment in
 [the code](https://github.com/kubernetes/kubernetes/blob/master/pkg/features/kube_features.go)
@@ -265,7 +261,7 @@ Once the [deprecation period](https://kubernetes.io/docs/reference/using-api/dep
 has passed, the gate should be locked to the default value (`LockToDefault:
 true`). As with GA features, all references to the feature gate must be kept for
 a minimum of three releases after gate has been locked to the default value. the
-gate, al references to it, and all gated logic may be removed after those three
+gate, all references to it, and all gated logic may be removed after those three
 releases. See [compatibility version](#compatibility-versions) for more details.
 
 For example:
