@@ -3,7 +3,7 @@
 It is sometimes desireable to build new networking features as [CRDs] rather
 than [in-tree]. Reasons may include (but aren't limited to):
 
-* A desire to be free of lockstep with the [KEP] process
+* A need to move at a different pace than the core project
 * Experimentation and highly iterative development
 * The feature is useful to multiple parties, but is niche
 * the API doesn't or can't have a default implementation in core
